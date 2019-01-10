@@ -19,22 +19,27 @@ class ListHotels extends Component {
   render() {
     const {hotels} = this.state;
 
-    if (!hotels) {
-      return <div>Loading</div>;
-    } else {
-      return (
-        <div className="ListHotels">
-          {hotels.map((hotel, i) => (
-            <Hotel
-              key={i}
-              hotelName={hotel.name}
-              hotelLocation={hotel.city}
-              hotelRating={hotel.rating}
-            />
-          ))}
-        </div>
-      );
-    }
+    return(
+      <div className="ListHotels">
+        {hotels && (
+          <div className="ListHotels-content">
+              {hotels.map((hotel, i) => (
+                <Hotel
+                  key={i}
+                  hotelName={hotel.name}
+                  hotelLocation={hotel.city}
+                  hotelRating={hotel.rating}
+                />
+              ))}
+            </div>
+        )}
+
+        {!hotels && (
+          <div id="loading">Loading</div>
+        )}
+      </div>
+    ) 
+ 
   }
 }
 
